@@ -25,17 +25,15 @@
               eye.style.setProperty('opacity', '1')
           } else {
             eye.style.setProperty('opacity', '0')
-            console.log(arjscopy)
-            if (arjscopy) {
-              arjscopy.remove();
-            }
+            
+        
           }
         });
         observer.observe(body, { childList: true, subtree: true });
       };
 
       window.onload = () => {
-        const arjscopy = document.querySelector("#arjs-video-copy");
+        
         if (!document.location.href.includes('browser')) {
           eye.style.setProperty('opacity', '0')
 
