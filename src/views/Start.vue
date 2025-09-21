@@ -41,17 +41,17 @@ import MorphingText from "../components/MorphingText.vue";
       class="w-[100vw] h-[100dvh] fixed top-[-100vh] translate-y-[100vh] left-0 mix-blend-color-dodge"
     ></Sparkles>
 
-    <button class="absolute inset-0 top-[-40vh] left-32">
+    <button class="absolute inset-0 top-[-40vh] left-0 md:left-32">
       <RouterLink :to="{ name: 'Browser' }">
         <MorphingText
           :texts="['Lores', 'Start']"
-          className="text-5xl text-white cursor-pointer uppercase"
+          className="text-xl md:text-5xl text-white cursor-pointer uppercase"
           :morphTime="3.2"
           :cooldownTime="1.5"
         />
         <MorphingText
-          :texts="['Scanning', 'Explorer']"
-          className="text-xl md:text-5xl text-white relative top-10 cursor-pointer uppercase"
+          :texts="['Explorer', 'Scanning']"
+          className="text-xl md:text-5xl text-white relative top-5 md:top-10 cursor-pointer uppercase"
           :morphTime="2.8"
           :cooldownTime="1.5"
         />
