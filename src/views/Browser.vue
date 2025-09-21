@@ -689,7 +689,7 @@ video#arjs-video[style] {
   z-index: 98 !important;
 
   @media (max-width: 480px) {
-    transform: translate(-20%, -80%) !important;
+    transform: translate(-27%, -61%) scale(0.84) !important;
   }
 }
 
@@ -740,11 +740,6 @@ video#arjs-video[style] {
   .ar-container {
     height: 40vh;
     max-height: 40vh;
-  }
-
-  #arjs-video {
-    width: min(75vw, 300px) !important;
-    height: min(30vh, 200px) !important;
   }
 
   .eye-overlay {
