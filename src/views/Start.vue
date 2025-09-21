@@ -51,7 +51,7 @@ import MorphingText from "../components/MorphingText.vue";
         />
         <MorphingText
           :texts="['Explorer', 'Scanning']"
-          className="text-2xl md:text-5xl text-white relative top-5 md:top-10 cursor-pointer uppercase"
+          className="text-2xl md:text-5xl text-white relative top-10 cursor-pointer uppercase"
           :morphTime="2.8"
           :cooldownTime="1.5"
         />

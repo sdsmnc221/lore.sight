@@ -1,8 +1,8 @@
 {
     "rewrites": [
         {
-            "source": "/api/sky-tickets/:ticketNumber/download",
-            "destination": "/api/sky-tickets/[ticketNumber]/download"
+            "source": "/(.*)",
+            "destination": "/index.html"
         }
     ]
 }
