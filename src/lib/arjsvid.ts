@@ -7,7 +7,8 @@ function createCanvasCopy() {
   const setupCanvas = () => {
     canvas.id = "arjs-video-copy";
     canvas.width = 400;
-    canvas.height = 300;
+    canvas.height = 400 * (window.innerWidth / window.innerHeight);
+
     canvas.style.cssText = `
       position: fixed !important;
       top: 50% !important;
@@ -25,7 +26,7 @@ function createCanvasCopy() {
     const video = document.getElementById("arjs-video") as HTMLVideoElement;
     if (video && video.videoWidth > 0) {
       // Hide original video
-      video.style.display = "none";
+      video.style.opacity = "0";
 
       // Draw video frame to canvas
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
