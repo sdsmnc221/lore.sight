@@ -687,6 +687,10 @@ video#arjs-video[style] {
   left: 50% !important;
   transform: translate(-50%, 14%) !important;
   z-index: 98 !important;
+
+  @media (max-width: 480px) {
+    transform: translate(-20%, -80%) !important;
+  }
 }
 
 // Color shift animations from Start.vue
