@@ -50,7 +50,7 @@ import MorphingText from "../components/MorphingText.vue";
           :cooldownTime="1.5"
         />
         <MorphingText
-          :texts="['Explorer', 'Scanning']"
+          :texts="['Scanning', 'Explorer']"
           className="text-5xl text-white relative top-10 cursor-pointer uppercase"
           :morphTime="2.8"
           :cooldownTime="1.5"
