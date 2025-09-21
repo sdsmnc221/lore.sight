@@ -333,7 +333,7 @@ onMounted(async () => {
 
 .browser-main {
   position: fixed;
-  animation: brutalistColorShiftOverlay 10s infinite;
+  animation: brutalistColorShiftOverlay_ 10s infinite;
 }
 
 .sparkles-container {
@@ -464,7 +464,7 @@ onMounted(async () => {
   max-height: 60vh;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+
   margin-bottom: 1.5rem;
 
   @media (max-width: 768px) {
@@ -479,7 +479,6 @@ onMounted(async () => {
     max-height: 45vh;
     margin-bottom: 0.75rem;
     border-radius: 12px;
-    box-shadow: none;
   }
 }
 
@@ -697,7 +696,7 @@ onMounted(async () => {
 }
 
 // Color shift animations from Start.vue
-@keyframes brutalistColorShiftOverlay {
+@keyframes brutalistColorShiftOverlay_ {
   0% {
     filter: hue-rotate(0deg) saturate(1);
   }

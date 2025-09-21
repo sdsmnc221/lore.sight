@@ -20,7 +20,9 @@ import MorphingText from "../components/MorphingText.vue";
       <div class="h-full m-w-full w-auto aspect-[1024/1516] p-10 md:p-0">
         <img alt="" src="/dreamer-of-ink.png" class="ink h-full w-full" />
       </div>
-      <div class="absolute right-[32vw] bottom-40">
+      <div
+        class="absolute right-[-24px] bottom-[-10px] scale-[0.64] md:scale-[1] md:right-[32vw] md:bottom-40"
+      >
         <img
           alt=""
           src="/scripture.svg"
@@ -56,17 +58,6 @@ import MorphingText from "../components/MorphingText.vue";
       </RouterLink>
     </button>
   </div>
-
-  <!-- <Transition
-    enter-active-class="transition-all duration-2000 absolute top-0 left-0"
-    enter-from-class="blur-md opacity-0"
-    enter-to-class="blur-none opacity-100"
-    leave-active-class="transition-all duration-2000 absolute top-0 left-0"
-    leave-from-class="blur-none opacity-100"
-    leave-to-class="blur-md opacity-0"
-  >
-    <div></div>
-  </Transition> -->
 </template>
 
 <style scoped>

@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,9 +8,46 @@
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.4.5/aframe/build/aframe-ar-nft.js"></script>
   </head>
-  <body style="background-color: oklch(29.3% 0.066 243.157); overflow: hidden;">
+  <body style="background-color: oklch(29.3% 0.066 243.157); overflow: hidden">
     <div id="app"></div>
     <div id="arjs-video-overlay" class="eye-overlay"></div>
     <script type="module" src="/src/main.ts"></script>
+    <script>
+      const eye = document.querySelector("#arjs-video-overlay");
+      
+
+      const observeUrlChange = () => {
+        let oldHref = document.location.href;
+        const body = document.querySelector("body");
+
+        const arjscopy = document.querySelector("#arjs-video-copy");
+
+        const observer = new MutationObserver((mutations) => {
+          if (document.location.href.includes('browser')) {
+              eye.style.setProperty('opacity', '1')
+          } else {
+            eye.style.setProperty('opacity', '0')
+            console.log(arjscopy)
+            if (arjscopy) {
+              arjscopy.remove();
+            }
+          }
+        });
+        observer.observe(body, { childList: true, subtree: true });
+      };
+
+      window.onload = () => {
+        const arjscopy = document.querySelector("#arjs-video-copy");
+        if (!document.location.href.includes('browser')) {
+          eye.style.setProperty('opacity', '0')
+
+          if (arjscopy) {
+            arjscopy.remove();
+          }
+        }
+        observeUrlChange();
+      }  
+      
+    </script>
   </body>
 </html>
