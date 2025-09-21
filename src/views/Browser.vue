@@ -698,6 +698,7 @@ video#arjs-video[style] {
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, 14%) !important;
+  z-index: 102 !important;
 
   @media (max-width: 480px) {
     transform: translate(-20%, -80%) !important;

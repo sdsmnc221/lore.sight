@@ -6,8 +6,8 @@ function createCanvasCopy() {
 
   const setupCanvas = () => {
     canvas.id = "arjs-video-copy";
-    canvas.width = 400;
-    canvas.height = 400 * (window.innerWidth / window.innerHeight);
+    canvas.width = 640;
+    canvas.height = 480;
 
     canvas.style.cssText = `
       position: fixed !important;
