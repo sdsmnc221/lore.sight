@@ -679,18 +679,6 @@ onMounted(async () => {
 
   // Smooth transitions
   transition: all 0.3s ease;
-
-  @media (max-width: 768px) {
-    width: min(70vw, 350px) !important;
-    height: min(35vh, 250px) !important;
-    border-radius: 15px;
-  }
-
-  @media (max-width: 480px) {
-    width: min(80vw, 300px) !important;
-    height: min(30vh, 200px) !important;
-    border-radius: 12px;
-  }
 }
 
 video#arjs-video[style] {
@@ -698,11 +686,7 @@ video#arjs-video[style] {
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, 14%) !important;
-  z-index: 102 !important;
-
-  @media (max-width: 480px) {
-    transform: translate(-20%, -80%) !important;
-  }
+  z-index: 98 !important;
 }
 
 // Color shift animations from Start.vue
