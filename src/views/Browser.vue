@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onMounted, nextTick, ref } from "vue";
 import Sparkles from "../components/Sparkles.vue";
-import overrideARjsVideoPosition from "../lib/arjsvid";
 import createCanvasCopy from "../lib/arjsvid";
 import isMobile from "../lib/isMobile";
 
@@ -32,7 +31,7 @@ const markerConfigs = {
 
 let currentActiveMarker = "train-ticket-en-marker";
 
-const switchToMarker = (markerName) => {
+const switchToMarker = (markerName: string) => {
   console.log("Switching to marker:", markerName);
 
   // Hide all markers
@@ -44,7 +43,7 @@ const switchToMarker = (markerName) => {
   });
 
   // Show selected marker
-  const selectedConfig = markerConfigs[markerName];
+  const selectedConfig = (markerConfigs as any)[markerName];
   if (selectedConfig) {
     const selectedElement = document.getElementById(selectedConfig.elementId);
     if (selectedElement) {
@@ -54,20 +53,22 @@ const switchToMarker = (markerName) => {
     currentActiveMarker = markerName;
     document.getElementById(
       "info"
-    ).innerHTML = `✨ Ready to scan ${markerName} images ✨`;
+    )!.innerHTML = `✨ Ready to scan ${markerName} images ✨`;
 
     // Update button states
     document.querySelectorAll("#controls button").forEach((btn) => {
       btn.classList.remove("active");
     });
-    document.getElementById(`btn-${markerName}`).classList.add("active");
+    document.getElementById(`btn-${markerName}`)!.classList.add("active");
   }
 };
 
 // Enhanced overlay positioning with continuous sync
 const positionOverlay = () => {
-  const arjsVideo = document.querySelector("#arjs-video");
-  const arjsVideoOverlay = document.querySelector("#arjs-video-overlay");
+  const arjsVideo = document.querySelector("#arjs-video") as HTMLElement;
+  const arjsVideoOverlay = document.querySelector(
+    "#arjs-video-overlay"
+  ) as HTMLElement;
 
   if (arjsVideo && arjsVideoOverlay) {
     // Force center positioning regardless of video position
@@ -110,7 +111,7 @@ const positionOverlay = () => {
       centerX - width / 2 + "px",
       "important"
     );
-    arjsVideo.style.setProperty("z-index", 102, "important");
+    arjsVideo.style.setProperty("z-index", "102", "important");
   }
 };
 
@@ -122,7 +123,7 @@ onMounted(async () => {
     // Wait a bit for AR.js to initialize
     setTimeout(() => {
       Object.keys(markerConfigs).forEach((markerName) => {
-        const config = markerConfigs[markerName];
+        const config = (markerConfigs as any)[markerName];
         const element = document.getElementById(config.elementId);
 
         if (element) {
@@ -130,7 +131,7 @@ onMounted(async () => {
             if (currentActiveMarker === markerName) {
               document.getElementById(
                 "info"
-              ).innerHTML = `🌟 Found ${markerName}! Redirecting... 🌟`;
+              )!.innerHTML = `🌟 Found ${markerName}! Redirecting... 🌟`;
               setTimeout(() => {
                 window.location.href = config.redirect;
               }, 1500);
@@ -141,7 +142,7 @@ onMounted(async () => {
             if (currentActiveMarker === markerName) {
               document.getElementById(
                 "info"
-              ).innerHTML = `🔍 Looking for ${markerName} images...`;
+              )!.innerHTML = `🔍 Looking for ${markerName} images...`;
             }
           });
         }

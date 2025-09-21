@@ -1,11 +1,10 @@
 import isMobile from "./isMobile";
 
 function createCanvasCopy() {
-  let canvas: HTMLCanvasElement;
+  let canvas: HTMLCanvasElement = document.createElement("canvas");
   let ctx: CanvasRenderingContext2D;
 
   const setupCanvas = () => {
-    canvas = document.createElement("canvas");
     canvas.id = "arjs-video-copy";
     canvas.width = 400;
     canvas.height = 300;
