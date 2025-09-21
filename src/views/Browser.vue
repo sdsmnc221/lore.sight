@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onMounted, nextTick, ref } from "vue";
 import Sparkles from "../components/Sparkles.vue";
-import createCanvasCopy from "../lib/arjsvid";
 import isMobile from "../lib/isMobile";
 
 const isMobileComputed = ref(isMobile());
