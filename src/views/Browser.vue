@@ -685,7 +685,7 @@ video#arjs-video[style] {
   position: fixed !important;
   top: 50% !important;
   left: 50% !important;
-  transform: translate(-50%, 14%) !important;
+  transform: translate(-50%, -37.5%) scale(0.2) !important;
   z-index: 98 !important;
   pointer-events: none !important;
 
