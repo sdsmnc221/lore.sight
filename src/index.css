@@ -130,3 +130,9 @@
   }
 }
 
+
+.app, body {
+  width: 100vw !important;
+  height: 100dvh !important;
+  overflow: hidden !important;
+}

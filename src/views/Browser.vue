@@ -1,6 +1,11 @@
 <script setup lang="ts">
-import { onMounted, nextTick } from "vue";
+import { onMounted, nextTick, ref } from "vue";
 import Sparkles from "../components/Sparkles.vue";
+import overrideARjsVideoPosition from "../lib/arjsvid";
+import createCanvasCopy from "../lib/arjsvid";
+import isMobile from "../lib/isMobile";
+
+const isMobileComputed = ref(isMobile());
 
 const markerConfigs = {
   "train-ticket-en": {
@@ -105,6 +110,7 @@ const positionOverlay = () => {
       centerX - width / 2 + "px",
       "important"
     );
+    arjsVideo.style.setProperty("z-index", 102, "important");
   }
 };
 
@@ -142,9 +148,6 @@ onMounted(async () => {
       });
     }, 2000);
 
-    // Initial positioning
-    setTimeout(positionOverlay, 1200);
-
     // // Continuous sync for responsive behavior
     // const syncInterval = setInterval(positionOverlay, 100);
 
@@ -154,9 +157,15 @@ onMounted(async () => {
     // });
   });
 
+  createCanvasCopy();
+
+  // Initial positioning
+  setTimeout(positionOverlay, 1200);
+
   // Handle window resize and orientation changes
   window.addEventListener("resize", () => {
     setTimeout(positionOverlay, 100);
+    isMobileComputed.value = isMobile();
   });
 
   window.addEventListener("orientationchange", () => {
@@ -172,7 +181,7 @@ onMounted(async () => {
     :max-size="120"
     :particle-density="1200"
     particle-color="#39736d"
-    class="browser-main w-[100vw] h-[200vh] fixed inset-0 mix-blend-color-dodge"
+    class="browser-main w-[100vw] h-[200vh] top-0 left-0 mix-blend-color-dodge overflow-hidden"
   ></Sparkles>
 
   <div class="overflow-hidden w-full h-[100dvh]">
@@ -267,14 +276,18 @@ onMounted(async () => {
         </a-scene>
 
         <div
-          class="fixed z-10 top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]"
+          class="fixed z-[-10] top-1/2 left-1/2 translate-x-[-50%] md:translate-y-[-50%] translate-y-[-66%] w-[90%] md:w-auto mix-blend-difference md:mix-blend-overlay"
         >
-          <img alt="" src="/frame2.svg" class="h-auto w-[40vw]" />
+          <img
+            alt=""
+            :src="isMobileComputed ? '/frame.svg' : '/frame2.svg'"
+            class="md:h-auto md:w-[40vw] h-[60vh] w-auto brightness-[200%] md:brightness-[100%] saturate-[0.8]"
+          />
         </div>
       </div>
 
       <!-- Control buttons with organic style -->
-      <div id="controls" class="controls-container">
+      <div id="controls" class="controls-container pt-20 md:pt-0">
         <button
           id="btn-capybara"
           @click="switchToMarker('capybara')"
@@ -319,6 +332,7 @@ onMounted(async () => {
 @import url("https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap");
 
 .browser-main {
+  position: fixed;
   animation: brutalistColorShiftOverlay 10s infinite;
 }
 
@@ -465,6 +479,7 @@ onMounted(async () => {
     max-height: 45vh;
     margin-bottom: 0.75rem;
     border-radius: 12px;
+    box-shadow: none;
   }
 }
 
@@ -491,7 +506,6 @@ onMounted(async () => {
   pointer-events: none;
   width: min(60vw, 400px) !important;
   height: min(40vh, 300px) !important;
-  animation: eyePulse 3s ease-in-out infinite;
 
   @media (max-width: 768px) {
     width: min(70vw, 350px) !important;
@@ -503,18 +517,8 @@ onMounted(async () => {
     width: min(80vw, 300px) !important;
     height: min(30vh, 200px) !important;
     border-radius: 12px;
-  }
-}
-
-@keyframes eyePulse {
-  0%,
-  100% {
-    opacity: 0.8;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.05);
+    margin-top: -10vh !important;
+    mix-blend-mode: soft-light;
   }
 }
 
@@ -659,7 +663,8 @@ onMounted(async () => {
 }
 
 // AR.js video styling with eye mask - always centered
-#arjs-video {
+#arjs-video,
+#arjs-video-copy {
   position: fixed !important;
   // top: 50% !important;
   // left: 50% !important;
