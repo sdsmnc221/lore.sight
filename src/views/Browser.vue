@@ -660,44 +660,12 @@ onMounted(async () => {
 }
 
 // AR.js video styling with eye mask - always centered
-#arjs-video,
-#arjs-video-copy {
-  position: fixed !important;
-  // top: 50% !important;
-  // left: 50% !important;
-  // transform: translate(-25%, -50%) !important;
-  z-index: 99 !important;
-  border-radius: 20px;
-  width: min(60vw, 400px) !important;
-  height: min(40vh, 300px) !important;
-
-  // Apply the image mask
-  mask: url("/eye.gif") no-repeat center center;
-  mask-size: contain;
-  -webkit-mask: url("/eye.gif") no-repeat center center;
-  -webkit-mask-size: contain;
-
-  // Smooth transitions
-  transition: all 0.3s ease;
-
-  @media (max-width: 768px) {
-    width: min(70vw, 350px) !important;
-    height: min(35vh, 250px) !important;
-    border-radius: 15px;
-  }
-
-  @media (max-width: 480px) {
-    width: min(80vw, 300px) !important;
-    height: min(30vh, 200px) !important;
-    border-radius: 12px;
-  }
-}
 
 video#arjs-video[style] {
   position: fixed !important;
   top: 50% !important;
   left: 50% !important;
-  transform: translate(-50%, 14%) !important;
+  transform: translate(-50%, -50%) !important;
 
   @media (max-width: 480px) {
     transform: translate(75.2%, -90.5%) !important;

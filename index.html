@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/script.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>A Leap of Faith, into TOT.</title>
+    <title>Lore Sight v.0</title>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.4.5/aframe/build/aframe-ar-nft.js"></script>
   </head>
@@ -19,8 +19,6 @@
       const observeUrlChange = () => {
         let oldHref = document.location.href;
         const body = document.querySelector("body");
-
-        const arjscopy = document.querySelector("#arjs-video-copy");
 
         const observer = new MutationObserver((mutations) => {
           if (document.location.href.includes('browser')) {
@@ -41,9 +39,7 @@
         if (!document.location.href.includes('browser')) {
           eye.style.setProperty('opacity', '0')
 
-          if (arjscopy) {
-            arjscopy.remove();
-          }
+      
         }
         observeUrlChange();
       }  
