@@ -30,5 +30,7 @@ LoreSight is an integral component of The Train of Thoughts v2. It serves as the
 To experience the current demo of LoreSight:
 
 1.  Ensure you have the demo application running on your device.
-2.  Point your device's camera at one of the designated illustration markers.
+2.  Scan the stamp of the 'Weaving Eye' card (see attached image for reference).
 3.  Observe as LoreSight recognizes the marker and redirects you to its associated digital narrative.
+
+![Weaving Eye Card](./public/Waving-eye.jpg)
