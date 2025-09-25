@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/script.png" />
+    <link rel="icon" type="image/svg+xml" href="/lore-sight.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lore Sight v.0</title>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
@@ -14,34 +14,27 @@
     <script type="module" src="/src/main.ts"></script>
     <script>
       const eye = document.querySelector("#arjs-video-overlay");
-      
 
       const observeUrlChange = () => {
         let oldHref = document.location.href;
         const body = document.querySelector("body");
 
         const observer = new MutationObserver((mutations) => {
-          if (document.location.href.includes('browser')) {
-              eye.style.setProperty('opacity', '1')
+          if (document.location.href.includes("browser")) {
+            eye.style.setProperty("opacity", "1");
           } else {
-            eye.style.setProperty('opacity', '0')
-            
-        
+            eye.style.setProperty("opacity", "0");
           }
         });
         observer.observe(body, { childList: true, subtree: true });
       };
 
       window.onload = () => {
-        
-        if (!document.location.href.includes('browser')) {
-          eye.style.setProperty('opacity', '0')
-
-      
+        if (!document.location.href.includes("browser")) {
+          eye.style.setProperty("opacity", "0");
         }
         observeUrlChange();
-      }  
-      
+      };
     </script>
   </body>
 </html>
