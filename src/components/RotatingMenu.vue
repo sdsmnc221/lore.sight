@@ -43,7 +43,7 @@ interface MenuItem {
   icon: string;
 }
 
-const props = defineProps<{
+defineProps<{
   activeMarker?: string;
 }>();
 
