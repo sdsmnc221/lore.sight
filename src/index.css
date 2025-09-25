@@ -541,6 +541,7 @@ body {
 }
 
 .eye-overlay {
+  
   position: fixed !important;
   top: 50% !important;
   left: 50% !important;
@@ -551,18 +552,26 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+  border-radius: 20px;
   pointer-events: none;
-  width: min(60vw, 320px) !important;
-  height: auto;
-  aspect-ratio: 4/3;
+  width: min(60vw, 400px) !important;
+  height: min(40vh, 300px) !important;
 }
 
-@media (max-width: 768px) {
-  .eye-overlay {
-    width: min(80vw, 300px) !important;
+ @media (max-width: 768px) {
+    .eye-overlay {
+      width: min(70vw, 350px) !important;
+    height: min(35vh, 250px) !important;
+    border-radius: 15px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .eye-overlay {
+      width: min(80vw, 300px) !important;
     height: min(30vh, 200px) !important;
     border-radius: 12px;
-    transform: translate(-50%, -60%) !important;
+    margin-top: -10vh !important;
     mix-blend-mode: soft-light;
+    }
   }
-}
