@@ -333,7 +333,6 @@ onMounted(async () => {
 .browser-main {
   position: fixed;
   animation: brutalistColorShiftOverlay_ 10s infinite;
-  // animation: vintageColorShiftOverlay 8s ease-in-out infinite;
 }
 
 .sparkles-container {

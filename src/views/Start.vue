@@ -63,12 +63,12 @@ import MorphingText from "../components/MorphingText.vue";
 
 <style scoped>
 main {
-  /* animation: brutalistColorShiftOverlay 10s infinite; */
   animation: vintageColorShiftOverlay 8s ease-in-out infinite;
 }
 
 #lalala {
   position: fixed !important;
+  animation: brutalistColorShiftOverlay_ 10s infinite;
 }
 
 .ink {
