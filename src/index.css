@@ -472,6 +472,20 @@
   }
 }
 
+@keyframes rev1 {
+  to {
+    offset-distance: 50%;
+  }
+}
+@keyframes rev2 {
+  from {
+    offset-distance: 50%;
+  }
+  to {
+    offset-distance: 0%;
+  }
+}
+
 /* Apply these to your elements */
 .vintage-main {
   animation: vintageColorShiftOverlay 8s ease-in-out infinite;

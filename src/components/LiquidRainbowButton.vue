@@ -57,8 +57,8 @@
   -webkit-mask-image: -webkit-radial-gradient(white, black);
   overflow: hidden;
   border-radius: 50%;
-  width: 64px;
-  height: 32px;
+  width: 160px;
+  height: 160px;
   padding: 12px 0;
   aspect-ratio: 1 / 1;
   display: flex;

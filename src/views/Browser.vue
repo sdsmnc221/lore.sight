@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { onMounted, nextTick, ref } from "vue";
-import Sparkles from "../components/Sparkles.vue";
 import isMobile from "../lib/isMobile";
+
+import Sparkles from "../components/Sparkles.vue";
+import RotatingMenu from "../components/RotatingMenu.vue";
 
 const isMobileComputed = ref(isMobile());
 
@@ -29,9 +31,17 @@ const markerConfigs = {
 };
 
 let currentActiveMarker = "train-ticket-en-marker";
+const activeMarker = ref("train-ticket-en");
+
+const handleMarkerSelection = (markerId: string) => {
+  switchToMarker(markerId);
+};
 
 const switchToMarker = (markerName: string) => {
   console.log("Switching to marker:", markerName);
+
+  // Update active marker
+  activeMarker.value = markerName;
 
   // Hide all markers
   Object.values(markerConfigs).forEach((config) => {
@@ -53,12 +63,6 @@ const switchToMarker = (markerName: string) => {
     document.getElementById(
       "info"
     )!.innerHTML = `✨ Ready to scan ${markerName} images ✨`;
-
-    // Update button states
-    document.querySelectorAll("#controls button").forEach((btn) => {
-      btn.classList.remove("active");
-    });
-    document.getElementById(`btn-${markerName}`)!.classList.add("active");
   }
 };
 
@@ -201,7 +205,7 @@ onMounted(async () => {
       </div>
 
       <!-- Info display with Start.vue style -->
-      <div id="info" class="info-display">
+      <div id="info" class="info-display top-[56%] md:top-0">
         ✨Weaving stories through visual perception✨
       </div>
 
@@ -285,7 +289,11 @@ onMounted(async () => {
       </div>
 
       <!-- Control buttons with organic style -->
-      <div id="controls" class="controls-container pt-20 md:pt-0">
+      <div
+        v-if="!isMobileComputed"
+        id="controls"
+        class="controls-container pt-20 md:pt-0"
+      >
         <button
           id="btn-capybara"
           @click="switchToMarker('capybara')"
@@ -321,6 +329,13 @@ onMounted(async () => {
         >
           <span class="button-text">🚄 Train Set (VN)</span>
         </button>
+      </div>
+
+      <div v-else class="controls-wrapper pt-20 md:pt-0">
+        <RotatingMenu
+          :active-marker="activeMarker"
+          @select-marker="handleMarkerSelection"
+        />
       </div>
     </main>
   </div>
