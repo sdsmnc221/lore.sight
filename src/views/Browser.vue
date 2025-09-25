@@ -177,6 +177,7 @@ onMounted(async () => {
     :min-size="1.2"
     :max-size="120"
     :particle-density="1200"
+    :speed="2"
     particle-color="#39736d"
     class="browser-main w-[100vw] h-[200vh] top-0 left-0 mix-blend-color-dodge overflow-hidden"
   ></Sparkles>
@@ -327,10 +328,12 @@ onMounted(async () => {
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap");
+@import "../index.css";
 
 .browser-main {
   position: fixed;
   animation: brutalistColorShiftOverlay_ 10s infinite;
+  // animation: vintageColorShiftOverlay 8s ease-in-out infinite;
 }
 
 .sparkles-container {

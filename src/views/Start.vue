@@ -38,6 +38,7 @@ import MorphingText from "../components/MorphingText.vue";
       :max-size="6.4"
       :particle-density="1000"
       particle-color="#ffe9c7"
+      :speed="1.2"
       class="w-[100vw] h-[100dvh] fixed top-[-100vh] translate-y-[100vh] left-0 mix-blend-color-dodge"
     ></Sparkles>
 
@@ -62,7 +63,8 @@ import MorphingText from "../components/MorphingText.vue";
 
 <style scoped>
 main {
-  animation: brutalistColorShiftOverlay 10s infinite;
+  /* animation: brutalistColorShiftOverlay 10s infinite; */
+  animation: vintageColorShiftOverlay 8s ease-in-out infinite;
 }
 
 #lalala {
@@ -70,7 +72,8 @@ main {
 }
 
 .ink {
-  animation: brutalistColorShift 4s infinite;
+  /* animation: brutalistColorShift 4s infinite; */
+  animation: vintageColorShift 8s ease-in-out infinite;
   background-size: contain;
 }
 </style>
