@@ -66,57 +66,21 @@ const switchToMarker = (markerName: string) => {
   }
 };
 
-// Enhanced overlay positioning with continuous sync
-const positionOverlay = () => {
-  // const arjsVideo = document.querySelector("#arjs-video") as HTMLElement;
-  // const arjsVideoOverlay = document.querySelector(
-  //   "#arjs-video-overlay"
-  // ) as HTMLElement;
-  // if (arjsVideo && arjsVideoOverlay) {
-  //   // Force center positioning regardless of video position
-  //   const centerX = window.innerWidth / 2;
-  //   const centerY = window.innerHeight / 2;
-  //   const overlaySize = Math.min(
-  //     window.innerWidth * 0.6,
-  //     window.innerHeight * 0.4
-  //   );
-  //   arjsVideoOverlay.style.setProperty("position", "fixed", "important");
-  //   arjsVideoOverlay.style.setProperty("top", "50%", "important");
-  //   arjsVideoOverlay.style.setProperty("left", "50%", "important");
-  //   arjsVideoOverlay.style.setProperty(
-  //     "transform",
-  //     "translate(-50%, -50%)",
-  //     "important"
-  //   );
-  //   arjsVideoOverlay.style.setProperty(
-  //     "width",
-  //     overlaySize + "px",
-  //     "important"
-  //   );
-  //   arjsVideoOverlay.style.setProperty(
-  //     "height",
-  //     overlaySize + "px",
-  //     "important"
-  //   );
-  //   arjsVideoOverlay.style.setProperty("z-index", "101", "important");
-  //   const { width, height } = arjsVideo.getBoundingClientRect();
-  //   arjsVideo.style.setProperty("position", "fixed", "important");
-  //   arjsVideo.style.setProperty(
-  //     "top",
-  //     height + centerY / 2 + "px",
-  //     "important"
-  //   );
-  //   arjsVideo.style.setProperty(
-  //     "left",
-  //     centerX - width / 2 + "px",
-  //     "important"
-  //   );
-  //   arjsVideo.style.setProperty("z-index", "102", "important");
-  // }
-};
-
 onMounted(async () => {
   await nextTick();
+
+  setTimeout(() => {
+    const videoMirror = document.querySelector(
+      "video#arjs-video[style]"
+    ) as HTMLVideoElement;
+
+    const videoOverlay = document.querySelector("#arjs-video-overlay");
+
+    if (videoMirror && videoOverlay && !isMobileComputed.value) {
+      // videoMirror.style.setProperty("margin-top", "100px", "important");
+      //  videoMirror.style.setProperty("left", "-50vw", "important");
+    }
+  }, 2000);
 
   // Set up event listeners after scene loads
   window.addEventListener("load", function () {
@@ -148,29 +112,6 @@ onMounted(async () => {
         }
       });
     }, 2000);
-
-    // // Continuous sync for responsive behavior
-    // const syncInterval = setInterval(positionOverlay, 100);
-
-    // // Cleanup on page unload
-    // window.addEventListener("beforeunload", () => {
-    //   clearInterval(syncInterval);
-    // });
-  });
-
-  // createCanvasCopy();
-
-  // Initial positioning
-  setTimeout(positionOverlay, 1200);
-
-  // Handle window resize and orientation changes
-  window.addEventListener("resize", () => {
-    setTimeout(positionOverlay, 100);
-    isMobileComputed.value = isMobile();
-  });
-
-  window.addEventListener("orientationchange", () => {
-    setTimeout(positionOverlay, 500);
   });
 });
 </script>
@@ -505,7 +446,6 @@ onMounted(async () => {
 
 // Eye overlay - always centered
 .eye-overlay {
-  // opacity: 0 !important;
   position: fixed !important;
   top: 50% !important;
   left: 50% !important;
@@ -516,16 +456,10 @@ onMounted(async () => {
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  border-radius: 20px;
   pointer-events: none;
-  width: min(60vw, 400px) !important;
-  height: min(40vh, 300px) !important;
-
-  @media (max-width: 768px) {
-    width: min(70vw, 350px) !important;
-    height: min(35vh, 250px) !important;
-    border-radius: 15px;
-  }
+  width: min(60vw, 320px) !important;
+  height: auto;
+  aspect-ratio: 4/3;
 
   @media (max-width: 480px) {
     width: min(80vw, 300px) !important;
@@ -679,15 +613,6 @@ onMounted(async () => {
 // AR.js video styling with eye mask - always centered
 
 #arjs-video {
-  // position: fixed !important;
-  // top: 50% !important;
-  // left: 50% !important;
-  // transform: translate(-25%, -50%) !important;
-  // z-index: 99 !important;
-  // border-radius: 20px;
-  // width: min(60vw, 400px) !important;
-  // height: min(40vh, 300px) !important;
-
   // Apply the image mask
   mask: url("/eye.gif") no-repeat center center;
   mask-size: contain;
@@ -700,14 +625,19 @@ onMounted(async () => {
 
 video#arjs-video[style] {
   position: fixed !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -37.5%) scale(0.2) !important;
+  top: -50% !important;
+  left: -50% !important;
+  transform: translate(50%, calc(50% * 0.76)) scale(0.24) !important;
   z-index: 98 !important;
   pointer-events: none !important;
+  transform-origin: center;
 
   @media (max-width: 480px) {
     transform: translate(-27%, -61%) scale(0.84) !important;
+  }
+
+  @media screen and (min-width: 1440px) and (max-width: 1550px) {
+    transform: translate(50%, 50% * 0.82) scale(0.24) !important;
   }
 }
 
@@ -759,17 +689,12 @@ video#arjs-video[style] {
     height: 40vh;
     max-height: 40vh;
   }
-
-  .eye-overlay {
-    width: min(75vw, 300px) !important;
-    height: min(30vh, 200px) !important;
-  }
 }
 
 // Landscape orientation adjustments
 @media (orientation: landscape) and (max-height: 600px) {
   .ar-container {
-    height: 70vh;
+    height: 100vh;
     max-height: 70vh;
   }
 
