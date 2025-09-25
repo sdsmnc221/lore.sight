@@ -69,19 +69,6 @@ const switchToMarker = (markerName: string) => {
 onMounted(async () => {
   await nextTick();
 
-  setTimeout(() => {
-    const videoMirror = document.querySelector(
-      "video#arjs-video[style]"
-    ) as HTMLVideoElement;
-
-    const videoOverlay = document.querySelector("#arjs-video-overlay");
-
-    if (videoMirror && videoOverlay && !isMobileComputed.value) {
-      // videoMirror.style.setProperty("margin-top", "100px", "important");
-      //  videoMirror.style.setProperty("left", "-50vw", "important");
-    }
-  }, 2000);
-
   // Set up event listeners after scene loads
   window.addEventListener("load", function () {
     // Wait a bit for AR.js to initialize
@@ -224,7 +211,7 @@ onMounted(async () => {
           <img
             alt=""
             :src="isMobileComputed ? '/frame.svg' : '/frame2.svg'"
-            class="md:h-auto md:w-[40vw] h-[60vh] w-auto brightness-[200%] md:brightness-[100%] saturate-[0.8]"
+            class="md:h-auto md:w-[60vw] h-[60vh] w-auto brightness-[200%] md:brightness-[100%] saturate-[0.8]"
           />
         </div>
       </div>
@@ -444,32 +431,6 @@ onMounted(async () => {
   border-radius: inherit;
 }
 
-// Eye overlay - always centered
-.eye-overlay {
-  position: fixed !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  z-index: 101 !important;
-  mix-blend-mode: difference;
-  background-image: url("/eye.gif");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  pointer-events: none;
-  width: min(60vw, 320px) !important;
-  height: auto;
-  aspect-ratio: 4/3;
-
-  @media (max-width: 480px) {
-    width: min(80vw, 300px) !important;
-    height: min(30vh, 200px) !important;
-    border-radius: 12px;
-    margin-top: -10vh !important;
-    mix-blend-mode: soft-light;
-  }
-}
-
 .controls-container {
   display: flex;
   flex-wrap: wrap;
@@ -610,37 +571,6 @@ onMounted(async () => {
   transition: all 0.3s ease;
 }
 
-// AR.js video styling with eye mask - always centered
-
-#arjs-video {
-  // Apply the image mask
-  mask: url("/eye.gif") no-repeat center center;
-  mask-size: contain;
-  -webkit-mask: url("/eye.gif") no-repeat center center;
-  -webkit-mask-size: contain;
-
-  // Smooth transitions
-  transition: all 0.3s ease;
-}
-
-video#arjs-video[style] {
-  position: fixed !important;
-  top: -50% !important;
-  left: -50% !important;
-  transform: translate(50%, calc(50% * 0.76)) scale(0.24) !important;
-  z-index: 98 !important;
-  pointer-events: none !important;
-  transform-origin: center;
-
-  @media (max-width: 480px) {
-    transform: translate(-27%, -61%) scale(0.84) !important;
-  }
-
-  @media screen and (min-width: 1440px) and (max-width: 1550px) {
-    transform: translate(50%, 50% * 0.82) scale(0.24) !important;
-  }
-}
-
 // Color shift animations from Start.vue
 @keyframes brutalistColorShiftOverlay_ {
   0% {
@@ -705,6 +635,42 @@ video#arjs-video[style] {
 
   .controls-container {
     margin-top: 0.5rem;
+  }
+}
+
+// AR.js video styling - always centered on desktop
+video#arjs-video[style] {
+  // Desktop centering (default)
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) scale(0.24) !important;
+  z-index: 98 !important;
+  pointer-events: none !important;
+  transform-origin: center center !important;
+  margin-top: 0 !important;
+
+  // Apply the image mask
+  mask: url("/eye.gif") no-repeat center center;
+  mask-size: contain;
+  -webkit-mask: url("/eye.gif") no-repeat center center;
+  -webkit-mask-size: contain;
+
+  // Smooth transitions
+  transition: all 0.3s ease;
+
+  // Mobile specific adjustments only
+  @media (max-width: 768px) {
+    transform: translate(-50%, -50%) scale(0.84) !important;
+  }
+
+  @media (max-width: 480px) {
+    transform: translate(-27%, -61%) scale(0.84) !important;
+  }
+
+  // Large desktop fine-tuning (optional)
+  @media screen and (min-width: 1440px) {
+    transform: translate(-50%, -50%) scale(0.26) !important;
   }
 }
 </style>
