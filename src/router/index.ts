@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import Start from "../views/Start.vue";
 import Browser from "../views/Browser.vue";
+import Player from "../views/Player.vue";
 
 const routes = [
   {
@@ -13,6 +14,11 @@ const routes = [
     path: "/browser",
     name: "Browser",
     component: Browser,
+  },
+  {
+    path: "/player",
+    name: "Player",
+    component: Player,
   },
 ];
 
