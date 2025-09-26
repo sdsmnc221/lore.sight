@@ -13,7 +13,7 @@ const videos: Record<string, string> = {
 
 const metaInfo: Record<string, string> = {
   "0925":
-    "Éclairon, en cette journée, mille & une bougies pour notre Lilou, félisweetienne de 17 ans.",
+    "Éclairons, en cette journée, mille & une bougies pour notre Lilou, félisweetienne de 17 ans.",
 };
 
 const { params } = route;

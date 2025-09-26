@@ -126,7 +126,7 @@ li {
   }
   menu {
     padding: 40px 80px;
-    --gap: 20%; /* increased gap between menu items */
+    --gap: calc(100% / 6); /* increased gap between menu items */
     li {
       width: max-content;
 

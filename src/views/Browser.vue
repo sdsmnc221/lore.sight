@@ -35,7 +35,7 @@ const markerConfigs = {
 };
 
 let currentActiveMarker = "train-ticket-en-marker";
-const activeMarker = ref("train-ticket-en");
+const activeMarker = ref("");
 
 const handleMarkerSelection = (markerId: string) => {
   switchToMarker(markerId);
@@ -82,8 +82,9 @@ const switchToMarker = (markerName: string) => {
 onMounted(async () => {
   await nextTick();
 
-  // Set up event listeners after scene loads
-  window.addEventListener("load", function () {
+  setTimeout(() => {
+    // Set up event listeners after scene loads
+
     // Wait a bit for AR.js to initialize
     setTimeout(() => {
       Object.keys(markerConfigs).forEach((markerName) => {
@@ -112,7 +113,7 @@ onMounted(async () => {
         }
       });
     }, 2000);
-  });
+  }, 1000);
 });
 </script>
 
