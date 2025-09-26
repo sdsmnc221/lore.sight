@@ -16,7 +16,7 @@ const routes = [
     component: Browser,
   },
   {
-    path: "/player",
+    path: "/player/:id",
     name: "Player",
     component: Player,
   },

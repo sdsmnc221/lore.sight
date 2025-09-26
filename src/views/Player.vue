@@ -1,10 +1,22 @@
 <script setup lang="ts">
-import { onMounted, nextTick, ref } from "vue";
-import isMobile from "../lib/isMobile";
-
+import { onMounted, nextTick } from "vue";
+import { useRoute } from "vue-router";
 import Sparkles from "../components/Sparkles.vue";
 
-const isMobileComputed = ref(isMobile());
+import Video0925 from "/videos/0925.mp4";
+
+const route = useRoute();
+
+const videos: Record<string, string> = {
+  "0925": Video0925,
+};
+
+const metaInfo: Record<string, string> = {
+  "0925":
+    "Éclairon, en cette journée, mille & une bougies pour notre Lilou, félisweetienne de 17 ans.",
+};
+
+const { params } = route;
 
 onMounted(async () => {
   await nextTick();
@@ -41,19 +53,22 @@ onMounted(async () => {
       </div>
 
       <!-- Info display with Start.vue style -->
-      <div id="info" class="info-display relative top-10">
-        ✨Weaving stories through visual perception✨
+      <div
+        id="info"
+        class="info-display relative top-[16%] w-[72%] md:w-[32%] md:top-10"
+      >
+        ✨{{ metaInfo[params.id as string] }}✨
       </div>
 
       <figure class="flex items-center justify-center relative w-full h-full">
         <img
           alt=""
           src="/video-frame.png"
-          class="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] h-[86%] aspect-[4/5]"
+          class="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] md:h-[86%] md:w-auto w-[86%] h-auto aspect-[4/5]"
         />
         <video
-          class="video-player absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-40%] h-[64%] aspect-[4/5] rounded-2xl"
-          src="/videos/0925.mp4"
+          class="video-player absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-40%] md:h-[64%] md:w-auto w-[64%] h-auto aspect-[4/5] rounded-2xl"
+          :src="videos[params.id as string]"
           controls
         />
       </figure>

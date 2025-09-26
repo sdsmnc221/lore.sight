@@ -60,6 +60,7 @@ const menuItems: MenuItem[] = [
   { id: "sky-ticket-a", label: "☁️ Sky A", icon: "☁️" },
   { id: "sky-ticket-b", label: "🌤️ Sky B", icon: "🌤️" },
   { id: "capybara", label: "🦫 Capybara", icon: "🦫" },
+  { id: "starburst", label: "✨ Ugly Starbust", icon: "✨" },
 ];
 
 const revolve = () => {

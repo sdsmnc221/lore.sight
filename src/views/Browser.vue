@@ -28,6 +28,10 @@ const markerConfigs = {
     redirect: "https://the-tot-2.vercel.app/",
     elementId: "capybara-marker",
   },
+  starburst: {
+    redirect: "/player/0925",
+    elementId: "starburst-marker",
+  },
 };
 
 let currentActiveMarker = "train-ticket-en-marker";
@@ -63,6 +67,15 @@ const switchToMarker = (markerName: string) => {
     document.getElementById(
       "info"
     )!.innerHTML = `✨ Ready to scan ${markerName} images ✨`;
+  }
+
+  // Set active button
+  [...document.querySelectorAll(".organic-button")].forEach((btn) =>
+    btn.classList.remove("active")
+  );
+  const selectedButton = document.getElementById(`btn-${markerName}`);
+  if (selectedButton) {
+    selectedButton.classList.add("active");
   }
 };
 
@@ -202,6 +215,17 @@ onMounted(async () => {
             visible="false"
           />
 
+          <a-nft
+            id="starburst-marker"
+            type="nft"
+            url="./markers/moche-starburst"
+            smooth="true"
+            smoothCount="10"
+            smoothTolerance=".01"
+            smoothThreshold="5"
+            visible="false"
+          />
+
           <a-entity camera></a-entity>
         </a-scene>
 
@@ -245,7 +269,7 @@ onMounted(async () => {
         </button>
         <button
           id="btn-train-ticket-en"
-          class="organic-button active"
+          class="organic-button"
           @click="switchToMarker('train-ticket-en')"
         >
           <span class="button-text">🚂 Train Set (EN)</span>
@@ -256,6 +280,13 @@ onMounted(async () => {
           class="organic-button"
         >
           <span class="button-text">🚄 Train Set (VN)</span>
+        </button>
+        <button
+          id="btn-starburst"
+          @click="switchToMarker('starburst')"
+          class="organic-button"
+        >
+          <span class="button-text">✨ Ugly Starbust</span>
         </button>
       </div>
 
