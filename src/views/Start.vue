@@ -3,7 +3,6 @@ import Sparkles from "../components/Sparkles.vue";
 import MorphingText from "../components/MorphingText.vue";
 import isMobile from "../lib/isMobile";
 import { onMounted, ref } from "vue";
-import LiquidRainbowButton from "../components/LiquidRainbowButton.vue";
 
 const refIsMobile = ref(isMobile());
 
