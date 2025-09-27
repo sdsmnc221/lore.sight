@@ -1,6 +1,17 @@
 <script setup lang="ts">
 import Sparkles from "../components/Sparkles.vue";
 import MorphingText from "../components/MorphingText.vue";
+import isMobile from "../lib/isMobile";
+import { onMounted, ref } from "vue";
+import LiquidRainbowButton from "../components/LiquidRainbowButton.vue";
+
+const refIsMobile = ref(isMobile());
+
+onMounted(() => {
+  window.addEventListener("resize", () => {
+    refIsMobile.value = isMobile();
+  });
+});
 </script>
 
 <template>
@@ -17,16 +28,22 @@ import MorphingText from "../components/MorphingText.vue";
     <main
       class="flex justify-center items-center fixed inset-0 p-10 m-10 backdrop-blur-xs"
     >
-      <div class="h-full m-w-full w-auto aspect-[1024/1516] p-10 md:p-0">
-        <img alt="" src="/dreamer-of-ink.png" class="ink h-full w-full" />
+      <div
+        class="h-full aspect-[1024/1516] md:aspect-[16/9] md:w-[100vw] md:h-auto p-10 md:p-0 md:brightness-[132%] md:mix-blend-overlay md:invert"
+      >
+        <img
+          alt=""
+          :src="`/dreamer-of-ink${refIsMobile ? '.webp' : '-dsk.webp'}`"
+          class="ink h-full md:w-full w-auto aspect-[1024/1516] md:aspect-[16/9] md:scale-[1.4] md:mix-blend-difference fixed md:relative top-0 md:top-auto left-0 md:left-auto"
+        />
       </div>
       <div
-        class="absolute right-[-24px] bottom-[-10px] scale-[0.64] md:scale-[1] md:right-[32vw] md:bottom-40"
+        class="absolute right-[-8vw] bottom-[32%] scale-[0.56] md:scale-[1] md:right-[28vw] md:bottom-36 md:opacity-[0.64]"
       >
         <img
           alt=""
           src="/scripture.svg"
-          class="scripture h-[32vh] w-auto mix-blend-difference invert"
+          class="scripture h-[32vh] w-auto mix-blend-difference md:invert"
         />
       </div>
     </main>
@@ -42,17 +59,25 @@ import MorphingText from "../components/MorphingText.vue";
       class="w-[100vw] h-[100dvh] fixed top-[-100vh] translate-y-[100vh] left-0 mix-blend-color-dodge"
     ></Sparkles>
 
-    <button class="absolute inset-0 top-[-40vh] left-10 md:left-32">
-      <RouterLink :to="{ name: 'Browser' }">
+    <button
+      class="absolute inset-0 bottom-[10vh] top-auto mix-blend-difference md:bottom-[64vh]"
+    >
+      <RouterLink
+        :to="{ name: 'Browser' }"
+        :class="{
+          'btn-text w-48 h-16 inline-block bg-red-100 rounded-xl brightness-[320%]':
+            refIsMobile,
+        }"
+      >
         <MorphingText
           :texts="['Lores', 'Start']"
-          className="text-2xl md:text-5xl text-white cursor-pointer uppercase"
+          className="text-2xl md:text-5xl text-white cursor-pointer mix-blend-difference uppercase"
           :morphTime="3.2"
           :cooldownTime="1.5"
         />
         <MorphingText
           :texts="['Scanning', 'Explorer']"
-          className="text-2xl md:text-5xl text-white relative top-6 md:top-10 cursor-pointer uppercase"
+          className="text-2xl md:text-5xl text-white relative top-6 md:top-10 mix-blend-difference cursor-pointer uppercase"
           :morphTime="2.8"
           :cooldownTime="1.5"
         />
@@ -61,7 +86,7 @@ import MorphingText from "../components/MorphingText.vue";
   </div>
 </template>
 
-<style scoped>
+<style lang="scss">
 main {
   animation: vintageColorShiftOverlay 8s ease-in-out infinite;
 }
@@ -72,8 +97,22 @@ main {
 }
 
 .ink {
-  /* animation: brutalistColorShift 4s infinite; */
   animation: vintageColorShift 8s ease-in-out infinite;
   background-size: contain;
+
+  @media screen and (max-width: 480px) {
+    animation: brutalistColorShiftOverlay 10s infinite;
+    mix-blend-mode: hard-light;
+  }
+}
+
+.scripture {
+  animation: brutalistColorShiftOverlay 10s infinite;
+  mix-blend-mode: hard-light;
+}
+
+.btn-text {
+  box-shadow: 0 0 0 4px #dc3b3b, 0 0 0 8px #00ffff, 4px -40px 20px 40px #0000ff,
+    4px 20px 20px 20px #0000ff;
 }
 </style>
