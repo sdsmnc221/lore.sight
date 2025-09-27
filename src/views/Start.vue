@@ -42,7 +42,7 @@ onMounted(() => {
         <img
           alt=""
           src="/scripture.svg"
-          class="scripture h-[32vh] w-auto mix-blend-difference md:invert"
+          class="scripture h-[32vh] w-auto mix-blend-difference invert"
         />
       </div>
     </main>
@@ -103,11 +103,6 @@ main {
     animation: brutalistColorShiftOverlay 10s infinite;
     mix-blend-mode: hard-light;
   }
-}
-
-.scripture {
-  animation: brutalistColorShiftOverlay 10s infinite;
-  mix-blend-mode: hard-light;
 }
 
 .btn-text {
