@@ -38,12 +38,12 @@ onMounted(() => {
       class="flex justify-center items-center fixed inset-0 p-10 m-10 backdrop-blur-xs"
     >
       <div
-        class="h-full aspect-[1024/1516] md:aspect-[16/9] md:w-[100vw] md:h-auto p-10 md:p-0 md:brightness-[132%] md:mix-blend-overlay md:invert"
+        class="h-full aspect-[1024/1516] md:aspect-[1456/816] md:w-[100vw] md:h-auto p-10 md:p-0 md:brightness-[132%] md:mix-blend-overlay md:invert"
       >
         <img
           alt=""
           :src="`/dreamer-of-ink${refIsMobile ? '.webp' : '-dsk.webp'}`"
-          class="ink h-full md:w-full w-auto aspect-[1024/1516] md:aspect-[16/9] md:scale-[1.4] md:mix-blend-difference fixed md:relative top-0 md:top-auto left-0 md:left-auto"
+          class="ink h-full md:w-full w-auto aspect-[1024/1516] md:aspect-[1456/816] md:scale-[1.4] md:mix-blend-difference fixed md:relative top-0 md:top-auto left-0 md:left-auto"
         />
       </div>
       <div
@@ -137,6 +137,11 @@ main {
 .btn-text {
   box-shadow: 0 0 0 4px #8d6868, 0 0 0 8px #213838, 4px -40px 20px 40px #8b8bb8,
     4px 20px 20px 20px #d5d5ee;
+
+  @supports (-apple-visual-effect: -apple-system-glass-material) {
+    background: transparent;
+    -apple-visual-effect: -apple-system-glass-material;
+  }
 
   & > div {
     background-color: #000;
