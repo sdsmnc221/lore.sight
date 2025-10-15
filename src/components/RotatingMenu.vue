@@ -1,6 +1,6 @@
 <template>
   <div
-    class="menu-container w-[320px] h-[160px] fixed bottom-[-32vw] left-1/2 translate-x-[-50%]"
+    class="menu-container w-[320px] h-[160px] fixed bottom-[-30vw] left-1/2 translate-x-[-50%]"
   >
     <div class="menu-wrapper" ref="menuRef">
       <menu>
@@ -60,7 +60,7 @@ const menuItems: MenuItem[] = [
   { id: "sky-ticket-a", label: "☁️ Sky A", icon: "☁️" },
   { id: "sky-ticket-b", label: "🌤️ Sky B", icon: "🌤️" },
   { id: "capybara", label: "🦫 Capybara", icon: "🦫" },
-  { id: "starburst", label: "✨ Ugly Starbust", icon: "✨" },
+  // { id: "starburst", label: "✨ Ugly Starbust", icon: "✨" },
 ];
 
 const revolve = () => {
@@ -126,7 +126,7 @@ li {
   }
   menu {
     padding: 40px 80px;
-    --gap: calc(100% / 6); /* increased gap between menu items */
+    --gap: calc(100% / 5); //6 /* increased gap between menu items */
     li {
       width: max-content;
 
